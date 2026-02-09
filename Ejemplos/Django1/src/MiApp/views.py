@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from datetime import datetime
+
 def HolaMundo(request):
     return HttpResponse("Hola Mundo cruel y despiadado")
 

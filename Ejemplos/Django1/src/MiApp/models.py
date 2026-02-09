@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import date
 CHOICES_GENERO = (
     ("Mujer","Mujer"),
     ("Hombre","Hombre"),
@@ -20,3 +20,28 @@ class PersonaModel(models.Model):
     activo = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_created=True,auto_now_add=True)
     fecha_modifica = models.DateTimeField(auto_now=True)
+
+    def nombre_completo(self):
+        nombre_completo = self.nombre
+        nombre_completo += " " + self.apaterno if self.apaterno is not None else ""
+        nombre_completo += " " + self.amaterno if self.amaterno is not None else ""
+        return nombre_completo
+
+    def __str__(self):
+        return f'{self.nombre} - {self.email} - {self.activo}'
+    
+    def calcula_edad(self)->int:
+        hoy = date.today()
+        # Restar años
+        edad = hoy.year - self.fecha_nacimiento.year
+        # Verificar si aún no ha cumplido años este año
+        if (hoy.month, hoy.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day):
+            edad -= 1
+        return edad 
+    
+    def save(self,*args,**kwargs):
+        self.edad = self.calcula_edad()
+        super(PersonaModel,self).save(*args,**kwargs)
+        
+        
+        
