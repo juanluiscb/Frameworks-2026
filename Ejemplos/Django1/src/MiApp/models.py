@@ -24,15 +24,17 @@ class PersonaModel(models.Model):
 
     def nombre_completo(self):
         nombre_completo = self.nombre
-        if self.apaterno is not None:
-            nombre_completo += " "+self.apaterno
-        if self.amaterno is not None:
-            nombre_completo += " "+self.amaterno
+        nombre_completo += " " + self.apaterno if self.apaterno is not None else ""
+        nombre_completo += " " + self.amaterno if self.amaterno is not None else ""
         return nombre_completo
 
 
     def __str__(self)->str:
-        return f'{self.nombre} {self.apaterno} {self.amaterno}'
+        return f'{self.nombre_completo()}'
+    
+    class Meta:
+        verbose_name = 'Persona'
+        verbose_name_plural = 'Personas'
     
     def calcula_edad(self):
         hoy = date.today()
@@ -52,8 +54,33 @@ class catalogo_estados_municipios(models.Model):
     nombre_municipio = models.CharField(max_length=120)	
     poblacion_total = models.BigIntegerField()
 
+    def __str__(self):
+        return f'{self.nombre_entidad} - {self.nombre_municipio}' 
+    
+    class Meta:
+        verbose_name='Estado y Municipio'
+        verbose_name_plural='Estados y Municipios'
 
-# class DatosGenerales(models.Model):
-#     direccion = models.TextField()
-#     cp = models.IntegerField(verbose_name='Código Postal')
-#     estado_municipio = models.ForeignKey()
+
+class DatosGenerales(models.Model):
+    direccion = models.TextField()
+    cp = models.IntegerField(verbose_name='Código Postal')
+    estado_municipio = models.ForeignKey(
+        'catalogo_estados_municipios', 
+        on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        return f'{self.direccion}'
+
+class PersonaDatosGenerales(models.Model):
+    persona = models.ForeignKey('PersonaModel', on_delete=models.CASCADE)
+    datos_generales = models.ForeignKey('DatosGenerales',on_delete=models.CASCADE)
+    fecha_registro = models.DateTimeField(auto_created=True, auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.persona.nombre_completo()}'
+
+    class Meta:
+        verbose_name='Datos Generales de Persona'
+        verbose_name_plural='Datos Generales de Personas'
