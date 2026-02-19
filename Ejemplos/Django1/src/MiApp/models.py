@@ -79,7 +79,7 @@ class PersonaDatosGenerales(models.Model):
     fecha_registro = models.DateTimeField(auto_created=True, auto_now_add=True)
 
     def __str__(self):
-        return f'{self.persona.nombre_completo()}'
+        return f'{self.persona.nombre_completo()} {self.fecha_registro}'
 
     class Meta:
         verbose_name='Datos Generales de Persona'
