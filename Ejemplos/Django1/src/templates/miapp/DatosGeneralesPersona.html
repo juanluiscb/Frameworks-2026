@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% block contenido %}
+<h1>{{ datosPersona.persona }}</h1>
+<ul>
+    <li>Edad: {{ datosPersona.persona.edad }}</li>
+    <li>Correo Electrónico: {{ datosPersona.persona.email }}</li>
+    <li>Genero: {{ datosPersona.persona.genero }}</li>
+    <li>Estado: {{ datosPersona.datos_generales.estado_municipio.nombre_entidad }}</li>
+    <li>Municipio: {{ datosPersona.datos_generales.estado_municipio.nombre_municipio }}</li>
+    <li>Dirección: {{ datosPersona.datos_generales.direccion }}</li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+{% endblock contenido %}
+
+{% block footer %}
+No quiero footer
+{% endblock footer%}

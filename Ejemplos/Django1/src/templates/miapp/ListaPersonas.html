@@ -1,0 +1,27 @@
+{% extends  'main/base.html' %}
+{% block contenido %}
+<h2>Lista de Personas</h2>
+
+    <table border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>Email</th>
+            <th>Ver Detalles</th>
+        </tr>
+        {% for p in listaPersonas %}
+            <tr>
+                <td>{{ p.nombre }}</td>
+                <td>{{ p.apaterno }}</td>
+                <td>{{ p.amaterno }}</td>
+                {% if user.is_authenticated %}
+                <td>{{ p.email }}</td>
+                {% else %}
+                <td>Datos Protegidos</td>
+                {% endif%}
+                <td><a href="{% url 'datos-generales' persona_id=p.id %}">Ver Detalles</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock contenido %}

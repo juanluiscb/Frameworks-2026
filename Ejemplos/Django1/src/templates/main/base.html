@@ -1,30 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    {% block head %}
+        {% include 'main/head.html'%}
+    {% endblock head%}
+    
 </head>
 <body>
-    <h2>Lista de Personas</h2>
-    <table border="1">
-        <tr>
-            <th>Nombre</th>
-            <th>Apellido Paterno</th>
-            <th>Apellido Materno</th>
-            <th>Email</th>
-            <th>Ver Detalles</th>
-        </tr>
-        {% for p in listaPersonas %}
-            <tr>
-                <td>{{ p.nombre }}</td>
-                <td>{{ p.apaterno }}</td>
-                <td>{{ p.amaterno }}</td>
-                <td>{{ p.email }}</td>
-                <td><a href="{% url 'datos-generales' persona_id=p.id %}">Ver Detalles</a></td>
-            </tr>
-        {% endfor %}
-    </table>
-    
+    {% include 'main/menu.html' %}
+    {% block contenido %}
+    <h1>Bienvenidos seres del mundo</h1>
+    {% endblock contenido %}
+    {% block footer %}
+     {% include 'main/footer.html' %}
+    {% endblock footer %}
+    {% block js%}
+    {% endblock js%}
 </body>
 </html>
