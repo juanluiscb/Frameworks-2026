@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +9,19 @@
 </head>
 <body>
     {% include 'main/menu.html' %}
+    
     {% block contenido %}
-    <h1>Bienvenidos seres del mundo</h1>
+
+        <h1>Bienvenidos seres del mundo</h1>
+        
+        <img src="{% static 'images/LogoUaz.jpg' %}" width="300" height="300" alt="UAz">
+
     {% endblock contenido %}
+
     {% block footer %}
      {% include 'main/footer.html' %}
     {% endblock footer %}
+
     {% block js%}
     {% endblock js%}
 </body>
