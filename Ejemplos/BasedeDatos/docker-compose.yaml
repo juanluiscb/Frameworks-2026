@@ -1,0 +1,24 @@
+services:
+  db-controlcaseta:
+    image: mariadb:10.6
+    container_name: db-controlcaseta
+    env_file: .env
+    volumes:
+      - ./Datos:/var/lib/mysql
+      - ./respaldos:/tmp/respaldos
+    working_dir: /tmp/respaldos
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+
+  app-controlcaseta:
+    image: juanluiscb/controlcaseta:dev-0.0.1
+    container_name: app-controlcaseta
+    build: .
+    expose: 
+      - 8000
+    ports:
+      - 8000:8000
+    env_file: .env
+    volumes:
+      - ./src:/src
