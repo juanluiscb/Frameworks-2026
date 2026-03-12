@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  db-nameapp:
+
+  app-nameapp:
+
+
+  web-nameapp:
+
+  celery-nameapp:
+
+  redeis-nameapp:
+
+  
