@@ -1,0 +1,5 @@
+FROM tomcat:jre8-alpine
+
+COPY ./src/. /usr/local/tomcat/webapps/ROOT/.
+
+EXPOSE 8080
