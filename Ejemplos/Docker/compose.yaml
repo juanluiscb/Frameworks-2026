@@ -1,33 +1,33 @@
 version: "3.8"
 
 services:
-  # web-docker-tomcat:
-  #   image: juanluiscb/web-docker:tomcat-0.0.2
-  #   container_name: web-docker-tomcat
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile-tomcat
-  #   volumes:
-  #     # - ./src:/usr/local/tomcat/webapps/ROOT
-  #     - apache_vol:/usr/local/tomcat/webapps/ROOT
-  #   restart: unless-stopped
-  #   expose:
-  #     - 8080
-  #   ports:
-  #     - 8080:8080
-  # web-docker-apache:
-  #   image: juanluiscb/web-docker:apache-0.0.1
-  #   container_name: web-docker-apache
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile-apache
-  #   restart: unless-stopped
-  #   volumes:
-  #     - apache_vol:/usr/local/apache2/htdocs
-  #   expose:
-  #     - 80
-  #   ports:
-  #     - 8081:80
+  web-docker-tomcat:
+    image: juanluiscb/web-docker:tomcat-0.0.2
+    container_name: web-docker-tomcat
+    build:
+      context: .
+      dockerfile: Dockerfile-tomcat
+    volumes:
+      # - ./src:/usr/local/tomcat/webapps/ROOT
+      - apache_vol:/usr/local/tomcat/webapps/ROOT
+    restart: unless-stopped
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+  web-docker-apache:
+    image: juanluiscb/web-docker:apache-0.0.1
+    container_name: web-docker-apache
+    build:
+      context: .
+      dockerfile: Dockerfile-apache
+    restart: unless-stopped
+    volumes:
+      - apache_vol:/usr/local/apache2/htdocs
+    expose:
+      - 80
+    ports:
+      - 8081:80
   
   web-docker-nginx:
     image: juanluiscb/web-docker:nginx-0.0.1
