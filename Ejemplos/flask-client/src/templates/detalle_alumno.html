@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cliente API Python</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Detalle de Alumno</h2>
+    <div class="table-responsive">
+        <div class="container mt-5">
+            <div class="card shadow" style="max-width: 500px; margin: auto;">
+                <!-- Foto de perfil y nombre -->
+                <div class="card-body text-center">
+                    <img src="https://images.icon-icons.com/1378/PNG/512/avatardefault_92824.png" class="rounded-circle img-fluid" alt="Foto Perfil" style="width: 150px;">
+                    <h3 class="card-title mt-3">{{posts.nombre}} {{posts.apaterno}} {{posts.amaterno}}</h3>
+                    {% if posts.activo == True %}
+                        <p>
+                            <img src="https://freesvg.org/img/1538299575.png" alt="Activo" style="width: 50px;">
+                        </p>
+                    {% else %}
+                        <p>
+                            <img src="https://freesvg.org/img/1538299359.png" alt="Inactivo" style="width: 50px;">
+                        </p>
+                    {% endif %}
+                    
+                    <!-- Botones de Acción -->
+                    <button class="btn btn-primary">Seguir</button>
+                    <button class="btn btn-outline-secondary">Mensaje</button>
+                </div>
+                
+                <!-- Detalles adicionales -->
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Email:</strong> {{posts.email}}</li>
+                    <li class="list-group-item"><strong>Edad:</strong> {{posts.edad}}</li>
+                    <li class="list-group-item"><strong>Genero:</strong> {{posts.genero}}</li>
+                </ul>
+                <a href="/" class="btn btn-primary">Regresar</a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

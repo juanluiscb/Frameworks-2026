@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cliente API Python</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h3>Listado de Alumnos desde API DRF</h3>
+    <form action="" method="GET">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <th>Matricula</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Ver</th>
+                    <th>Eliminar</th>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                        <tr>
+                            <td>{{ post.matricula }}</td>
+                            <td>{{ post.nombre }} {{ post.apaterno }} {{ post.amaterno}}</td> 
+                            <td>{{ post.email }}</td>
+                            <td><a href="/detalle-alumno/{{post.matricula}}">Ver</a></td>
+                            <td><a href="/borrar-alumno/{{post.matricula}}">Borrar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <footer><a href="/add-alumno" class="btn btn-primary">Agregar nuevo +</a></footer>
+        </div>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
