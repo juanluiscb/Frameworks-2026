@@ -51,6 +51,7 @@ def agregar_alumno():
 def guarda_alumno():
     if request.method == 'POST':
         api_url = f"http://localhost:8001/alumnos/"
+        print(f'Valor del campo activo: {request.form.get('activo')}')
         payload={
             'matricula': request.form.get('matricula'),
             'nombre': request.form.get('nombre'),
@@ -59,7 +60,7 @@ def guarda_alumno():
             'edad': request.form.get('edad'),
             'email': request.form.get('email'),
             'genero': request.form.get('genero'),
-            'activo': request.form.get('activo')
+            'activo': request.form.get('activo') if  request.form.get('activo') != None else False
         }
         # print(payload)
         response = requests.post(api_url, json=payload)
