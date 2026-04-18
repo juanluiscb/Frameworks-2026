@@ -29,6 +29,22 @@ class CreaAlumnoMutation(graphene.Mutation):
         )
         alumno.save()
         return CreaAlumnoMutation(alumno=alumno)
-    
+
+class DeleteAlumnoMutation(graphene.Mutation):
+    class Arguments:
+        matricula = graphene.String(required=True)
+
+    success = graphene.Boolean()
+    @classmethod
+    def mutate(cls,root, info, matricula):
+        try:
+            alumno = Alumno.objects.get(matricula=matricula)
+            alumno.delete()
+            return DeleteAlumnoMutation(success=True)
+        except Alumno.DoesNotExist:
+            return DeleteAlumnoMutation(success=False)
+
+
 class Mutation(graphene.ObjectType):
     crea_alumno = CreaAlumnoMutation.Field()
+    delete_alumno = DeleteAlumnoMutation.Field()

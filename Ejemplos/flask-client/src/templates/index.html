@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+
 <div class="container">
     <h3>Listado de Alumnos desde API DRF</h3>
     <form action="" method="GET">
@@ -24,13 +25,13 @@
                             <td>{{ post.matricula }}</td>
                             <td>{{ post.nombre }} {{ post.apaterno }} {{ post.amaterno}}</td> 
                             <td>{{ post.email }}</td>
-                            <td><a href="/detalle-alumno/{{post.matricula}}">Ver</a></td>
-                            <td><a href="/borrar-alumno/{{post.matricula}}">Borrar</a></td>
+                            <td><a href="detalle-alumno/{{post.matricula}}">Ver</a></td>
+                            <td><a href="borrar-alumno/{{post.matricula}}">Borrar</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <footer><a href="/add-alumno" class="btn btn-primary">Agregar nuevo +</a></footer>
+            <footer><a href="add-alumno" class="btn btn-primary">Agregar nuevo +</a></footer>
         </div>
     </form>
 </div>
