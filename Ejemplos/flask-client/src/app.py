@@ -204,7 +204,7 @@ def gql_borrar_alumno(pk):
         'variables': variables
     }
     print(query)
-    # Realizar la petición GET a la API
+# Realizar la petición GET a la API 
     response = requests.post(api_url,json=query)
 
     print(response)

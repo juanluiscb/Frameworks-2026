@@ -1,0 +1,50 @@
+services:
+  db-caseta:
+    container_name: db-caseta
+    image: mariadb:10.11
+    restart: unless-stopped
+    env_file: .env-db
+    volumes:
+      - ./Data:/var/lib/mysql
+    expose:
+      - 3306
+
+  app-caseta:
+    container_name: app-caseta
+    image: juanluiscb/app-caseta:dev-0.0.1
+    build: .
+    # command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./src:/home/worker/src
+      - caseta_staticfiles:/static
+    expose:
+      - 8000
+    # ports:
+    #   - "8000:8000"
+    env_file: .env 
+    depends_on:
+      - db-caseta
+
+  web-caseta:
+    image: nginx:alpine
+    container_name: web-caseta
+    restart: unless-stopped
+    expose:
+      - 80
+    ports:
+      - 80:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d:ro
+      - caseta_staticfiles:/static
+    depends_on:
+      - app-caseta
+    environment:
+      - VIRTUAL_HOST=${APP_NAME}
+
+volumes:
+ caseta_staticfiles:
+
+networks:
+ default:
+  external: true
+  name: webproxy

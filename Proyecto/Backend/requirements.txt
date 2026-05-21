@@ -1,0 +1,8 @@
+django
+djangorestframework
+djangorestframework-simplejwt
+pyotp
+mysqlclient
+python-dotenv
+django-environ
+gunicorn
